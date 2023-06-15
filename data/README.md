@@ -1,4 +1,4 @@
-# the  size of dataset
+# The dataset description
 
 columms: 11
 rows: 4981
