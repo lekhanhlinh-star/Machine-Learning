@@ -2,14 +2,11 @@ import dill
 import streamlit as st
 import encoder_data
 import pandas as pd
-filename='rfc_reg_model.dill'
-with open(filename, "rb") as f:
-    randomForest_models = dill.load(f)
 page_bg_img="""
 <style>
 
 [data-testid="stAppViewContainer"]{
-    background-image:url(""D:\MACHINE LEARING AT UNIVERSITY\pixabay_brain-stroke_1200.jpg"");
+    background-image:url(""asset\pixabay_brain-stroke_1200.jpg"");
     
 }
 </style>
@@ -27,7 +24,7 @@ feature=['age',
 
 with st.sidebar:
     st.title("Stroke detection app")
-    st.image("./pixabay_brain-stroke_1200.jpg")
+    st.image("asset\pixabay_brain-stroke_1200.jpg")
     df = pd.DataFrame.from_dict({
         'age':[float(st.slider("age",0.080000, 100.000000, 25.0))],
     'hypertension':[st.radio(
@@ -49,13 +46,14 @@ st.title("Stroke Detection App")
 # st.dataframe(df)
 new_data=encoder_data.new_data_num(df)
 # st.write(new_data)
-with open("KNN_model.dill", "rb") as f:
+filename=r'weights\KNN_model.dill'
+with open(filename, "rb") as f:
     model = dill.load(f)
 
 # st.write(model.predict(new_data)[0])
 st.write("Probability stroke: ",model.predict_proba(new_data)[0][1]*100,"%")
 # st.write("Probability stroke: ",model.predict_proba(new_data)[0])\\\\\\\\\\\\\
-st.image("./00.-Machine-Learing.png")
+st.image("asset\pixabay_brain-stroke_1200.jpg")
 
 
 
